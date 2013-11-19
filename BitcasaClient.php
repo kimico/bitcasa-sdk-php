@@ -666,6 +666,9 @@ class BitcasaClient
 					else if (strcmp($item["sync_type"], "sync") == 0) {
 						return new BitcasaSyncFolder($item);
 					}
+					else if (strcmp($item["sync_type"], "regular") == 0) {
+						return new BitcasaFolder($item);
+					}
 				}
 				else {
 					return new BitcasaFolder($item);
@@ -763,6 +766,8 @@ class BitcasaClient
 				$full_url .= $key . "=" . $value;
 			}
 		}
+
+		echo $full_url;
 
 		$r = new HttpRequest(($full_url), HttpRequest::METH_GET);
 
