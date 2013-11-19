@@ -767,7 +767,6 @@ class BitcasaClient
 			}
 		}
 
-		echo $full_url;
 
 		$r = new HttpRequest(($full_url), HttpRequest::METH_GET);
 
