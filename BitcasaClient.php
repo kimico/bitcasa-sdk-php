@@ -739,7 +739,10 @@ class BitcasaClient
 		return NULL;
 	}
 
-
+	public function raw_http_get($url, $args = array())
+	{
+		return $this->http_get($url, $args);
+	}
 	private function http_get($url, $args = array())
 	{
 		$full_url = $this->base_url . $url;
@@ -837,7 +840,10 @@ class BitcasaClient
 		return NULL;
 	}
 
-
+	public function raw_http_post($url, $args = array(),$body = NULL)
+	{
+		return $this->http_post($url, $args,$body);
+	}
 	private function http_post($url, $args = NULL, $body = NULL)
 	{
 		$full_url = $this->base_url . $url;
