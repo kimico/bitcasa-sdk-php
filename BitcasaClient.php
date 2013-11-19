@@ -450,7 +450,7 @@ class BitcasaClient
 			$args["depth"] = 0;
 		}
 		else {
-			$args["depth"] = 1;
+			
 		}
 
 		return $this->listResult($this->http_get("/folders" . $path, $args), $level, $device);
