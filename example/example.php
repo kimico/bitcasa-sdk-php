@@ -1,9 +1,16 @@
 <html><head></head><body>
 <?php
-include_once("BitcasaClient.php");
+include_once("../BitcasaClient.php");
+include_once("config.php");
 
-$client_id = "";
-$secret = "";
+$client_id = OAUTH_CLIENTID;
+$secret = OAUTH_SECRET;
+
+if (!isset($_GET['authorization_code']))
+{
+	header("Location: .");
+	die();
+}
 
 $client = new BitcasaClient();
 
