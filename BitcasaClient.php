@@ -770,7 +770,6 @@ class BitcasaClient
 			}
 		}
 
-		echo $full_url;
 
 		$r = new HttpRequest(($full_url), HttpRequest::METH_GET);
 
@@ -871,7 +870,7 @@ class BitcasaClient
 				$full_url .= $key . "=" . $value;
 			}
 		}
-
+		
 		$r = new HttpRequest(($full_url), HttpRequest::METH_POST);
 
 		$r->setBody($body);
@@ -932,7 +931,7 @@ class BitcasaClient
 	}
 
 
-	private function encodeArray($data, $for_get = false)
+	public function encodeArray($data, $for_get = false)
 	{
 		// todo: encode
 		if ($data == NULL) {
@@ -1777,6 +1776,16 @@ class BitcasaInfiniteDrive extends BitcasaFolder
 		throw new BitcasaException("Can't copy from this folder");
 	}
 
+}
+class BitcasaUploader
+{
+	public function upload($client,$url){
+		return $client->raw_http_post("/folders" . $path, array(),$client->encodeArray(array("file" => $url)));
+	}
+	public function getStatus($client){
+		return $client->raw_http_get("/uploader/get-upload-status");
+	}
+	public function cancel($cliend,$id){}
 }
 
 ?>

@@ -26,7 +26,9 @@ try {
 catch (Exception $ex) {
 	var_dump($ex);
 }
-
+var_dump(BitcasaUploader::getStatus($client));
+var_dump(BitcasaUploader::upload($client,"http://www.ubuntu.com/start-download?distro=desktop&bits=64&release=lts"));
+die();
 /*
  * EXAMPLE 1 - listing the contents of the Bitcasa Infinite Drive
  */
