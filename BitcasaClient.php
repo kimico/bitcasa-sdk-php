@@ -248,9 +248,17 @@ class BitcasaClient
 	 * @param path the location on the Bitcasa infinite drive where the file resides
 	 * @return a BitcasaItem instance containing information on the downloaded file
 	 */
-	public function downloadStream($handle, $path)
+	public function downloadStream($handle, $path,$file_path,$fileo = null)
 	{
-		$base = "/files";
+
+
+		
+		$base = "/files/";
+		if ($fileo)
+		{
+			$base = "/files/".urlencode($fileo->getName());
+		}
+		
 		$fields = array();
 		$fields["path"] = $path;
 		$data = $this->http_get_file($base, $fields);
@@ -723,7 +731,7 @@ class BitcasaClient
 			}
 		}
 
-		$r = new HttpRequest(urlencode($full_url), HttpRequest::METH_GET);
+		$r = new HttpRequest(($full_url), HttpRequest::METH_GET);
 
 		$r->send();
 		$rc = $r->getResponseCode();
@@ -1469,7 +1477,7 @@ class BitcasaFile extends BitcasaItem {
 	 */
 	public function download($client, $filepath) {
 		$handle = fopen($filepath, "w");
-		$response = $client->downloadStrean($handle, $this->getPath(), $filepath);
+		$response = $client->downloadStream($handle, $this->getPath(), $filepath,$this);
 		fclose($handle);
 
 		return $response;
