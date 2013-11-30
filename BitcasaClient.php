@@ -730,7 +730,7 @@ class BitcasaClient
 				$full_url .= $key . "=" . $value;
 			}
 		}
-
+		echo $full_url;
 		$r = new HttpRequest(($full_url), HttpRequest::METH_GET);
 
 		$r->send();
