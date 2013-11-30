@@ -1493,7 +1493,7 @@ class BitcasaFolder extends BitcasaItem {
 	 *         exception will be returned, or NULL in the event the folder
 	 *         is empty.
 	 */
-	public static function listDir($client) {
+	public function listDir($client) {
 		return $client->doListFolder($this->getPath());
 	}
 
